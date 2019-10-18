@@ -29,7 +29,8 @@
 
       //One-time configuration
       var config = {
-        useTitleSuffix: false
+        useTitleSuffix: false,
+        disableUpdate: false
       };
 
       function Meta($rootScope, $injector) {
@@ -139,7 +140,7 @@
         var readRouteMeta = function(meta) {
           meta = meta || {};
 
-          if (meta.disableUpdate) {
+          if (meta.disableUpdate || config.disableUpdate) {
             return false;
           }
 
@@ -297,6 +298,11 @@
         config.useTitleSuffix = !!bool;
         return this;
       };
+
+      this.disableUpdate = function(bool) {
+        config.disableUpdate = !!bool;
+        return this;
+      }
 
       /**
        * @ngdoc method
